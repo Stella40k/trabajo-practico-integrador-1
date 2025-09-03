@@ -2,3 +2,12 @@ Desarrollar desde cero un sistema completo de blog personal que incluya autentic
 usuarios, gestión de artículos y etiquetas. El proyecto debe implementar todas las tecnologías
 vistas en clase: JWT, cookies, bcrypt, validaciones con express-validator, relaciones de
 Sequelize (1:1, 1:N, N:M) y operaciones CRUD completas con eliminación cascada y lógica.
+
+usuario -> profile
+1:1
+
+profile ->tag
+1:Muchos
+
+article -> tag
+M:M

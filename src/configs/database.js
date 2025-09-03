@@ -13,11 +13,11 @@ dialect: process.env.DB_DIALECT,
 logging: console.log
 });
 
-/* export const connect = async() => {
+export const connect = async() => {
     try {
-        await sequelize.sync({alter: true})
-        console.log("conectado a la base de datoss");
+        await sequelize.sync({force: true})
+        console.log("conectado a la base de datos");
     } catch (error) {
         console.log("error al conectar con la bd", error);
     }
-}; */
+};
