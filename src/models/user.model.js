@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../configs/database.js";
+import { userProfile } from "./profile.model.js";
 
 export const userModel = sequelize.define('User', {
     id:{
@@ -39,3 +40,5 @@ export const userModel = sequelize.define('User', {
     deletedAt: "delete_at",
     paranoid: true, //activo la eliminacion logica 
 })
+
+

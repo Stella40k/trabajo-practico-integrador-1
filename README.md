@@ -6,8 +6,10 @@ Sequelize (1:1, 1:N, N:M) y operaciones CRUD completas con eliminación cascada 
 usuario -> profile
 1:1
 
-profile ->tag
+user ->article
 1:Muchos
 
 article -> tag
 M:M
+
+sin usuario no puede haber perfil, sin usuario no puede haber article, sin article no puede haber tag 

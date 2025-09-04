@@ -41,3 +41,14 @@ export const userProfile = sequelize.define('userProfile',{
 })
 
 //RELACIONES
+//un usuario solo pertenece a un perfil
+userModel.hasOne(userProfile, {foreignKey: 'user_id', as: "profile"});
+
+//un perfil solo pertenece a un usuario, se identifica con el id del user
+userProfile.belongsTo(userModel, {foreignKey: 'user_id', as: "user"})
+//el alias es para mostrar mejor la info, en vez de user_id se vera user cuando traiga la info
+
+
+
+
+
