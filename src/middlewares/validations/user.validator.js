@@ -2,6 +2,7 @@ import { body, param } from "express-validator";
 //el param es para validar el campo q venga en el req.body
 import { userModel } from "../../models/user.model";
 import { error } from "console";
+import { userById } from "../../controllers/user.controller";
 //ver mas sobre esta logica
 export const createUserValidation =[
     body("username")
@@ -32,8 +33,40 @@ export const createUserValidation =[
 ];
 export const updateUserValidation =[
     param("id")
-    .isInt(),
-    body("username"),
-    body("email"),
+    .isInt().withMessage("el id debe ser un numero entero")
+    .custom(async(value)=>{
+        const user = await userModel.findByPk(value);
+        if(!user){
+            throw new error("usuario inexistente");
+        }
+    }),
+    body("username")
+    .optional()
+    .isLength({ min: 3, max: 20 }).withMessage("el username debe tener entre 3 y 20 caracteres")
+    .isAlphanumeric().withMessage("el username solo puede contener letras y numeros")
+    .custom(async (value, { req }) => {
+      const user = await userModel.findOne({ where: { username: value } });
+      if (user && user.id !== parseInt(req.params.id)) {
+        throw new Error("username en uso");
+      }
+    }),
+    body("email")
+    .optional()
+    .isEmail().withMessage("email invalido")
+    .custom(async(value, {req})=>{
+        const user = await userModel.findOne({where:{email:value}});
+        if(user && user.id !==parseInt(req.params.id)){
+            throw new error("email ya existente")
+        }
+    }),
+];
+export const deleteUserValidation = [
+    param("id")
+    .isInt().withMessage("el ID debe ser un numero entero")
+    .custom(async(value)=>{
+        const user = await userModel.findByPk(value);
+        if(!user){
+            throw new error("usuario no encontrado")
+        }
+    })
 ]
-export const deleteUserValidation = []
