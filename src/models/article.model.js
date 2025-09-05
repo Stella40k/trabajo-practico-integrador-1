@@ -1,6 +1,7 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../configs/database.js";
 import { userModel } from "./user.model.js";
+import { deletArticleTag } from "../controllers/article_tag.controller.js";
 
 export const articleModel = sequelize.define('Article',{
     id:{
