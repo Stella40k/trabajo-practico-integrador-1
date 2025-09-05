@@ -9,7 +9,7 @@ export const authMiddleware =(req, res, next)=>{
 
         //verificacion de la existencia de ese token
         if(!token){
-            return res.status(401).json({message: "usuario no autenticado, inicie sesion", error});
+            return res.status(401).json({message: "usuario no autenticado, inicie sesion"});
         }
 
         //verifica y codifica el token con la firma
