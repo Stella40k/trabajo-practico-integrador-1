@@ -1,8 +1,7 @@
 import { body, param } from "express-validator";
 //el param es para validar el campo q venga en el req.body
 import { userModel } from "../../models/user.model";
-import { error } from "console";
-import { userById } from "../../controllers/user.controller";
+
 //ver mas sobre esta logica
 export const createUserValidation =[
     body("username")
@@ -11,7 +10,7 @@ export const createUserValidation =[
     .custom(async(value)=>{
         const user = await userModel.findOne({where: {username: value}});
         if(user){
-            throw new error("username ya en uso")
+            throw new Error("username ya en uso")
         }
     }),
     body("email")
@@ -19,7 +18,7 @@ export const createUserValidation =[
     .custom(async(value)=>{
         const user = await userModel.findOne({where: {email: value}});
         if(user){
-            throw new error("email ya registrado");
+            throw new Error("email ya registrado");
         }
     }),
     body("password")
@@ -37,7 +36,7 @@ export const updateUserValidation =[
     .custom(async(value)=>{
         const user = await userModel.findByPk(value);
         if(!user){
-            throw new error("usuario inexistente");
+            throw new Error("usuario inexistente");
         }
     }),
     body("username")
@@ -56,7 +55,7 @@ export const updateUserValidation =[
     .custom(async(value, {req})=>{
         const user = await userModel.findOne({where:{email:value}});
         if(user && user.id !==parseInt(req.params.id)){
-            throw new error("email ya existente")
+            throw new Error("email ya existente")
         }
     }),
 ];
@@ -66,7 +65,7 @@ export const deleteUserValidation = [
     .custom(async(value)=>{
         const user = await userModel.findByPk(value);
         if(!user){
-            throw new error("usuario no encontrado")
+            throw new Error("usuario no encontrado")
         }
     })
 ]
