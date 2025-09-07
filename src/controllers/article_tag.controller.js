@@ -1,6 +1,6 @@
-import { articleTag } from "../models/article_tag.model";
-import { tagModel } from "../models/tag.model";
-import { articleModel } from "../models/article.model";
+import { articleTag } from "../models/article_tag.model.js";
+import { tagModel } from "../models/tag.model.js";
+import { articleModel } from "../models/article.model.js";
 
 export const allARticlesTags = async (req, res)=>{
     try {

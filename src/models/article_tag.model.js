@@ -10,7 +10,9 @@ export const articleTag = sequelize.define('articleTag', {
         unique:true
     },
 },{
-    timestamps: true
+    timestamps: true,
+    createdAt: "create_at",
+    updatedAt: "update_at"
 })
 
 //RELACIONES

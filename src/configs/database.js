@@ -15,7 +15,7 @@ logging: console.log
 
 export const connect = async() => {
     try {
-        await sequelize.sync({force: true})
+        await sequelize.sync({alter: true})
         console.log("conectado a la base de datos");
     } catch (error) {
         console.log("error al conectar con la bd", error);

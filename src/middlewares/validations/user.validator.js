@@ -1,6 +1,6 @@
 import { body, param } from "express-validator";
 //el param es para validar el campo q venga en el req.body
-import { userModel } from "../../models/user.model";
+import { userModel } from "../../models/user.model.js";
 
 //ver mas sobre esta logica
 export const createUserValidation =[
