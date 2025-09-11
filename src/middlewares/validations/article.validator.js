@@ -1,5 +1,5 @@
 import { body, param } from "express-validator";
-import { articleModel } from "../../models/article.model";
+import { articleModel } from "../../models/article.model.js";
 
 export const createArticleValidation =[
     body("title")
